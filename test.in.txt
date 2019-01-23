@@ -1,0 +1,7 @@
+login root ok
+add_user hoenza 85
+add_user amenza 85
+add_user shenza 85
+logout
+login hoenza 85
+upload makefile hoenza
