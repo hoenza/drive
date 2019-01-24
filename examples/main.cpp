@@ -7,6 +7,7 @@
 using namespace std;
 
 int main(int argc, char **argv) {
+  Drive* myDrive = new Drive();
   srand(time(NULL)); // for rand
   try {
     MyServer server(argc > 1 ? atoi(argv[1]) : 5000);
