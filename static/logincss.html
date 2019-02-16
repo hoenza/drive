@@ -1,8 +1,33 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+      }
+      body {
+        background-image: url("/bg.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+      }
+      .field {
+        background-image: url("/pic2.jpg");
+        border-radius: 30px;
+        box-shadow: 10px;
+        display: absolute;
+        position: fixed;
+        top: 20%;
+        margin: 0;
+        left: 40%;
+        width: 300px;
+        height: 200px;
+      }
+    </style>
+  </head>
   <body style="text-align: center;">
-    <h1>AP HTTP</h1>
-    <div style="background-color: lightblue; padding: 1%; max-width: 300px; border-radius: 3px; margin: auto; ">
+    <div class="field" style="background-color: lightblue; padding: 1%; max-width: 300px; border-radius: 3px; margin: auto; ">
       <form action="/login" method="post">
         <p>Login</p>
         <input name="username" type="text" placeholder="Username" style="display:block; margin: auto; margin-bottom: 10px; padding: 5px; width: 94%;" />

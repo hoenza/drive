@@ -13,11 +13,6 @@ void File::setData(string _data) {
       data.push_back(_data[i]);
 }
 
-void File::setData(vector<char> _data) {
-   data.clear();
-   data = _data;
-}
-
 string File::download() {
    string ans;
    for(int i=0; i<data.size(); i++)
@@ -49,8 +44,4 @@ string File::getDetails() {
    }
    ans += "file volume = " + to_string(data.size()) + "Bytes\n";
    return ans;
-}
-
-int File::getStorage() {
-   return data.size();
 }

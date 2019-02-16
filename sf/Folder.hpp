@@ -22,7 +22,6 @@ class Folder :public Element {
    virtual std::string getDetails();
    virtual void addElement(Element* newElement);
    virtual Element* goDir(std::string direction);
-   virtual int getStorage();
    virtual Type getType() {return _FOLDER_; }
    virtual std::string download() {}
    virtual void addDirectory(Permission* permission, std::string directoryName);

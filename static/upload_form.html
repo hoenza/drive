@@ -1,13 +1,32 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <style>
+      html {
+        height: 100%;
+        margin: 0;
+      }
+      body {
+        background-image: url("/bg.jpg");
+        background-size: cover;   
+        background-repeat: no-repeat;
+        background-position: center center;
+        height: 100%;
+        width: 100%;
+      }
+      .icon {
+        font-size: 40px;
+        margin: 20px;
+      }
+    </style>
+  </head>
   <body style="text-align: center;">
-    <h1>AP HTTP</h1>
-    <h2>Upload</h2>
-    <div>
+    <h1>AP DRIVE UPLOAD</h1>
+    <div class="field">
       <form action="/up" method="post" enctype="multipart/form-data">
-        <input name="file_name" type="text" placeholder="File Name" />
-        <input type="file" name="file">
-        <button type="submit" >Upload</button>
+        <div class="icon"><input name="file_name" type="text" placeholder="File Name" />
+        <input type="file" name="file"></div>
+        <div class="icon"><button type="submit">Upload</button></div>
       </form>
     </div>
   </body>

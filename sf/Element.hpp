@@ -18,7 +18,6 @@ class Element {
    std::string getPath() {return path; }
    Permission* getPermission() {return permission; }
    virtual Type getType() = 0;
-   virtual int getStorage() = 0;
    virtual std::string getDetails() = 0;
    
    virtual void addElement(Element* newElement) = 0;

@@ -41,53 +41,22 @@ Drive::Drive() {
    Folder* nF5 = new Folder(newFolder2->getPath(), "three", newUser2, NULL);
    newFolder2->addElement(nF5);
 
-   vector<char> data1 = readFile("drive/File.hpp");
-   vector<char> data2 = readFile("drive/File.hpp");
-   vector<char> data3 = readFile("drive/Folder.hpp");
-   vector<char> data4 = readFile("drive/Folder.cpp");
-   vector<char> data5 = readFile("drive/Element.hpp");
-   vector<char> data6 = readFile("drive/Element.cpp");
+   vector<char> data1 = readFile("File.hpp");
+   vector<char> data2 = readFile("File.hpp");
+   vector<char> data3 = readFile("Folder.hpp");
+   vector<char> data4 = readFile("Folder.cpp");
+   vector<char> data5 = readFile("Element.hpp");
+   vector<char> data6 = readFile("Element.cpp");
    vector<char> data7 = readFile("main.cpp");
 
-   File* newFile1 = new File(nF->getPath(), "fileOne", newUser1, NULL);
-   newFile1->setData(data1);
-   nF->addElement(newFile1);
+   // File* newFile1 = new File(nF->getPath(), "fileOne", newUser1, NULL);
+   // nF->addElement(newFile1);
 
-   File* newFile2 = new File(nF1->getPath(), "fileTwo", newUser1, NULL);
-   newFile2->setData(data2);
-   nF1->addElement(newFile2);
+   // File* newFile2 = new File(nF1->getPath(), "fileTwo", newUser1, NULL);
+   // nF1->addElement(newFile2);
 
-   File* newFile3 = new File(nF2->getPath(), "fileTwo", newUser1, NULL);
-   newFile3->setData(data3);
-   nF2->addElement(newFile3);
-
-   File* newFile4 = new File(nF1->getPath(), "fileFour", newUser1, NULL);
-   newFile4->setData(data4);
-   nF1->addElement(newFile4);
-
-   File* newFile5 = new File(nF2->getPath(), "fileFive", newUser2, NULL);
-   newFile5->setData(data5);
-   nF2->addElement(newFile5);
-
-   File* newFile6 = new File(nF3->getPath(), "fileSix", newUser2, NULL);
-   newFile6->setData(data6);
-   nF3->addElement(newFile6);
-
-   File* newFile7 = new File(nF3->getPath(), "fileSeven", newUser2, NULL);
-   newFile7->setData(data7);
-   nF3->addElement(newFile7);
-
-   File* newFile8 = new File(nF4->getPath(), "fileEight", newUser2, NULL);
-   newFile8->setData(data3);
-   nF4->addElement(newFile8);
-
-   File* newFile9 = new File(nF4->getPath(), "fileNine", newUser2, NULL);
-   newFile9->setData(data5);
-   nF4->addElement(newFile9);
-
-   File* newFile10 = new File(nF5->getPath(), "fileTen", newUser2, NULL);
-   newFile10->setData(data6);
-   nF5->addElement(newFile10);
+   // File* newFile3 = new File(nF2->getPath(), "fileTwo", newUser1, NULL);
+   // nF2->addElement(newFile3);
 
 }
 
@@ -251,7 +220,6 @@ vector<char> Drive::readFile(string fileName) {
    streampos size;
    char* memblock;
    ifstream inFile (fileName, ios::in | ios::binary | ios::ate);
-
    if(!inFile.is_open())
       throw ErrorException(ERROR_OPEN_FILE_FAILED);
 
@@ -341,35 +309,27 @@ void Drive::move(string sid, string path) {
    user->setMoveSource(path);
 }
 
-void Drive::paste(string sid) {
-
+void Drive::paste(string sid, string targetPath) {
    User* user = findUserBySid(sid);
    if(user == NULL)
       throw ErrorException(ERROR_WRONG_AUTHORITY);
    if(user->getSourceType() == NONE)
       throw ErrorException(ERROR_INVALID_SOURCE_PATH);
-   
-   string targetPath = user->getPath();
    if(goDir(targetPath) == NULL)
       throw ErrorException(ERROR_INVALID_DIST_PATH);
-   cerr<< "path s ok"<< endl;
-   cout<< "source ="<< user->getSourcePath()<< endl;
-   cout<< "target ="<< targetPath<< endl;
-
+   
    string sourcePath = user->getSourcePath();
    if(goDir(sourcePath) == NULL || goFatherDir(sourcePath) == NULL)
       throw ErrorException(ERROR_INVALID_SOURCE_PATH);
 
    Element* dist = goDir(targetPath);
-   cerr<< "get permi"<< endl;
    if(user->getName() != ROOT_NAME && !dist->hasWritePermission(user->getName()))
       throw ErrorException(ERROR_NOT_ENOUGH_PERMISSION);
-   cerr<< "premission ok"<< endl;
-
+   
    Element* element = goDir(sourcePath);
    Element* copyElement = element->clone();
    dist->addElement(copyElement);
-   cerr<< "added"<< endl;
+
    if(user->getSourceType() == MOVE) {
       Element* fatherSource = goFatherDir(sourcePath);
       fatherSource->removeElement(element->getName());
@@ -559,8 +519,6 @@ string Drive::getName(string path) {
 
 Type Drive::getType(string path) {
    Element* element = goDir(path);
-   if(element == NULL)
-      throw ErrorException(ERROR_INVALID_PATH);
-   
+   // if(element == NULL)
    return element->getType();
 }

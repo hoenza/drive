@@ -19,10 +19,8 @@ class File :public Element {
    virtual std::string getDetails();
    virtual void addElement(Element* newElement) {}
    virtual Element* goDir(std::string direction) {}
-   virtual int getStorage();
    virtual Type getType() {return _FILE_; }
    void setData(std::string _data);
-   void setData(std::vector<char> _data);
    virtual std::string download();
    virtual void addDirectory(Permission* permission, std::string directoryName) {}
    virtual void removeElement(std::string name) {}

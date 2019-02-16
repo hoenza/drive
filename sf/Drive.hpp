@@ -34,7 +34,7 @@ class Drive {
    void addFolder(std::string sid, std::string name);
    void copy(std::string sid, std::string path);
    void move(std::string sid, std::string path);
-   void paste(std::string sid);
+   void paste(std::string sid, std::string targetPath);
    void remove(std::vector<std::string> removeData);
    void remove(std::string sid, std::string path);
    void fileSize(std::vector<std::string> sizeData);

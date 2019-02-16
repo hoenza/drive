@@ -16,7 +16,6 @@ string Folder::getDetails() {
       ans += "group = " + permission->printGroup() + "\n";
       ans += "group permission = " + permission->printGroupPermission() + "\n";
    }
-   ans += "folder volume = " + to_string(getStorage()) + "Bytes\n";
    return ans;
 }
 
@@ -111,10 +110,3 @@ void Folder::replaceElement(std::string name, Element* newElement) {
          elements[i] = newElement;
       }
 }
-
-int Folder::getStorage() {
-   int ans = 0;
-   for(int i=0; i<elements.size(); i++)
-      ans += elements[i]->getStorage();
-   return ans;
-} 
